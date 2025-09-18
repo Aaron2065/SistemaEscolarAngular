@@ -3,6 +3,7 @@ import { EmployeeService } from '../../../services/employee/employee.service';
 import { EmployeeReadDTO } from '../../../interface/employee';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-employee-list',
@@ -24,6 +25,7 @@ export class EmployeeListComponent implements OnInit {
     this.getEmployees();
   }
 
+  // Listar Employees
   getEmployees(): void {
     this.loading = true;
     this.employeeService.getAllEmployees().subscribe({
@@ -33,19 +35,48 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
+  // Redirigir al componente employee-create para crear
+  onCreate(): void {
+    this.router.navigate(['/employee-create']);
+  }
+
+    // Redirigir al componente employee-create para editar
   onEdit(id: number): void {
     this.router.navigate(['/employee-create', id]);
   }
 
+  // Eliminar con alertas SweetAlert
   onDelete(id: number): void {
-    if (!confirm('¿Seguro que deseas eliminar este empleado?')) return;
-    this.employeeService.deleteEmployee(id).subscribe({
-      next: () => this.employee = this.employee.filter(e => e.idEmployee !== id),
-      error: (err) => console.error('Error eliminando empleado', err)
-    });
-  }
-
-  onCreate(): void {
-    this.router.navigate(['/employee-create']);
-  }
+  Swal.fire({
+    title: '¿Estás seguro?',
+    text: "No podrás revertir esta acción",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.employeeService.deleteEmployee(id).subscribe({
+        next: () => {
+          this.employee = this.employee.filter(e => e.idEmployee !== id);
+          Swal.fire(
+            'Eliminado',
+            'El empleado ha sido eliminado correctamente.',
+            'success'
+          );
+        },
+        error: (err) => {
+          console.error(err);
+          Swal.fire(
+            'Error',
+            'No se pudo eliminar el empleado.',
+            'error'
+          );
+        }
+      });
+    }
+  });
+}
 }
