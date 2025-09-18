@@ -1,0 +1,22 @@
+/* Ajustar el header */
+header .navbar-brand {
+  font-size: 1.4rem;
+}
+
+header .nav-link {
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+header .nav-link:hover {
+  color: #ffe082;
+}
+
+/* Footer */
+footer {
+  font-size: 0.9rem;
+}
+
+main {
+  min-height: 70vh;
+}

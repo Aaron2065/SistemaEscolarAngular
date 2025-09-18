@@ -1,0 +1,43 @@
+<div class="card shadow p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Empleados</h2>
+    <button class="btn btn-primary" (click)="onCreate()">
+      <i class="bi bi-plus-lg"></i> Nuevo Empleado
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="text-center my-3">
+    <div class="spinner-border" role="status"></div>
+    <p>Cargando empleados...</p>
+  </div>
+
+  <table class="table table-bordered table-hover" *ngIf="!loading && employee.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Fecha de Nacimiento</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employee">
+        <td>{{ emp.idEmployee }}</td>
+        <td>{{ emp.name }}</td>
+        <td>{{ emp.bornDate | date:'dd/MM/yyyy' }}</td>
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm me-2" (click)="onEdit(emp.idEmployee)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="onDelete(emp.idEmployee)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && employee.length === 0" class="alert alert-info">
+    No hay empleados registrados.
+  </div>
+</div>
