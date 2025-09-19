@@ -1,0 +1,51 @@
+<div class="card shadow p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Estudiantes</h2>
+    <button class="btn btn-primary" (click)="onCreate()">
+      <i class="bi bi-plus-lg"></i> Nuevo Estudiante
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="text-center my-3">
+    <div class="spinner-border" role="status"></div>
+    <p>Cargando estudiantes...</p>
+  </div>
+
+  <table class="table table-bordered table-hover" *ngIf="!loading && students.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Foto</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let est of students">
+        <td>{{ est.idStudent }}</td>
+        <td>{{ est.name }}</td>
+        <td>{{ est.age }}</td>
+        <td>
+          @for (students of students; track students.idStudent) 
+          {
+            <img [src]="'https://localhost:7239'+est.fotoUrl" alt="{{est.fotoUrl}}" class="w-full h-auto object-cover">
+          }
+          </td>
+            
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm me-2" (click)="onEdit(est.idStudent)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="onDelete(est.idStudent)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && students.length === 0" class="alert alert-info">
+    No hay estudiantes registrados.
+  </div>
+</div>

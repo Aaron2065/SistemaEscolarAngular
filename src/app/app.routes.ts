@@ -4,13 +4,12 @@ import { EmployeeListComponent } from './pages/employee/employee-list/employee-l
 import { EmployeeCreateComponent } from './pages/employee/employee-create/employee-create.component';
 import { PayTypeListComponent } from './pages/payType/pay-type-list/pay-type-list.component';
 import { PayTypeCreateComponent } from './pages/payType/pay-type-create/pay-type-create.component';
-<<<<<<< HEAD
 import { classListComponent } from './pages/class/class-list/class.component';
 import { classCreateComponent } from './pages/class/class-create/class-create.component';
-=======
-import { TeacherListComponent } from './pages/teacher/teacher-list/teacher-list.component';
 import { TeacherCreateComponent } from './pages/teacher/teacher-create/teacher-create.component';
->>>>>>> f3e3b1b258b2142db4c1166e549ba1ba02db662f
+import { TeacherListComponent } from './pages/teacher/teacher-list/teacher-list.component';
+import { StudentsListComponent } from './pages/students/students-list/students-list.component';
+import { StudentsCreateComponent } from './pages/students/students-create/students-create.component';
 
 export const routes: Routes = [
     {
@@ -65,6 +64,19 @@ export const routes: Routes = [
         path: 'class-create/:id', // editar
         component: classCreateComponent
     },
+    {
+        path: 'students',
+        component: StudentsListComponent
+    },
+    {
+        path: 'students-create', // crear
+        component: StudentsCreateComponent
+    },
+    {
+        path: 'students-create/:id', // editar
+        component: StudentsCreateComponent
+    },
+    
     {
         path: '',
         redirectTo: 'home',
