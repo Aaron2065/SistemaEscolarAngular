@@ -1,0 +1,27 @@
+<div class="card shadow p-3">
+    <h2>{{ isEditMode ? 'Editar Materia' : 'Nueva Materia' }}</h2>
+
+    <form [formGroup]="classForm" (ngSubmit)="onSubmit()">
+
+        <div class="mb-3">
+            <label for="ClassName" class="form-label">Descripcion</label>
+            <input type="text" id="ClassName" class="form-control" formControlName="ClassName"
+                [ngClass]="{'is-invalid': classForm.get('ClassName')?.invalid && classForm.get('ClassName')?.touched}" />
+            <div class="invalid-feedback" *ngIf="classForm.get('ClassName')?.hasError('required')">
+                La descripcion de la materia es obligatoria.
+            </div>
+            <div class="invalid-feedback" *ngIf="classForm.get('ClassName')?.hasError('maxlength')">
+                Máximo 100 caracteres.
+            </div>
+        </div>
+
+        
+
+        <button class="btn btn-success" type="submit" [disabled]="classForm.invalid">
+            {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+        </button>
+        <button class="btn btn-secondary ms-2" type="button" (click)="router.navigate(['/class'])">
+            Cancelar
+        </button>
+    </form>
+</div>

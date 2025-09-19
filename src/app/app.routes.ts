@@ -4,6 +4,8 @@ import { EmployeeListComponent } from './pages/employee/employee-list/employee-l
 import { EmployeeCreateComponent } from './pages/employee/employee-create/employee-create.component';
 import { PayTypeListComponent } from './pages/payType/pay-type-list/pay-type-list.component';
 import { PayTypeCreateComponent } from './pages/payType/pay-type-create/pay-type-create.component';
+import { classListComponent } from './pages/class/class-list/class.component';
+import { classCreateComponent } from './pages/class/class-create/class-create.component';
 
 export const routes: Routes = [
     {
@@ -33,6 +35,18 @@ export const routes: Routes = [
     {
         path: 'payType-create/:id', // editar
         component: PayTypeCreateComponent
+    },
+    {
+        path: 'class',
+        component: classListComponent
+    },
+    {
+        path: 'class-create', // crear
+        component: classCreateComponent
+    },
+    {
+        path: 'class-create/:id', // editar
+        component: classCreateComponent
     },
     {
         path: '',

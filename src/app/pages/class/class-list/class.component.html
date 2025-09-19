@@ -1,0 +1,41 @@
+<div class="card shadow p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Materias</h2>
+    <button class="btn btn-primary" (click)="onCreate()">
+      <i class="bi bi-plus-lg"></i> Nueva Materia
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="text-center my-3">
+    <div class="spinner-border" role="status"></div>
+    <p>Cargando Materias...</p>
+  </div>
+
+  <table class="table table-bordered table-hover" *ngIf="!loading && classRead.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Materia</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cla of classRead">
+        <td>{{ cla.idClass }}</td>
+        <td>{{ cla.className }}</td>
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm me-2" (click)="onEdit(cla.idClass)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="onDelete(cla.idClass)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && classRead.length === 0" class="alert alert-info">
+    No hay Materias registrados.
+  </div>
+</div>

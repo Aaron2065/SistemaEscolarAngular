@@ -4,6 +4,7 @@ export const environment = {
     teachers: 'https://localhost:5001/api/teachers',
     tutors: 'https://localhost:5001/api/tutors',
     groups: 'https://localhost:5001/api/groups',
-    payType: 'https://localhost:7156/api/v1/PayType'
+    payType: 'https://localhost:7156/api/v1/PayType',
+    class: 'https://localhost:7156/api/v1/Class'
   }
 };
