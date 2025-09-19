@@ -6,6 +6,8 @@ import { PayTypeListComponent } from './pages/payType/pay-type-list/pay-type-lis
 import { PayTypeCreateComponent } from './pages/payType/pay-type-create/pay-type-create.component';
 import { TeacherListComponent } from './pages/teacher/teacher-list/teacher-list.component';
 import { TeacherCreateComponent } from './pages/teacher/teacher-create/teacher-create.component';
+import { TutorListComponent } from './pages/tutor/tutor-list/tutor-list.component';
+import { TutorCreateComponent } from './pages/tutor/tutor-create/tutor-create.component';
 import { classListComponent } from './pages/class/class-list/class.component';
 import { classCreateComponent } from './pages/class/class-create/class-create.component';
 
@@ -37,6 +39,18 @@ export const routes: Routes = [
     {
         path: 'teacher-create/:id', // editar
         component: TeacherCreateComponent
+    },
+    {
+        path: 'tutor',
+        component: TutorListComponent
+    },
+    {
+        path: 'tutor-create', // crear
+        component: TutorCreateComponent
+    },
+    {
+        path: 'tutor-create/:id', // editar
+        component: TutorCreateComponent
     },
     {
         path: 'payType',

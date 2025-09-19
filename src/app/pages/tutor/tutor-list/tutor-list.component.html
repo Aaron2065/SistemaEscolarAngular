@@ -1,0 +1,41 @@
+<div class="card shadow p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Tutores</h2>
+    <button class="btn btn-primary" (click)="onCreate()">
+      <i class="bi bi-plus-lg"></i> Nuevo Tutor
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="text-center my-3">
+    <div class="spinner-border" role="status"></div>
+    <p>Cargando tutores...</p>
+  </div>
+
+  <table class="table table-bordered table-hover" *ngIf="!loading && tutors.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Tutor</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of tutors">
+        <td>{{ t.idTutor }}</td>
+        <td>{{ t.employeeDisplayName }}</td>
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm me-2" (click)="onEdit(t.idTutor)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="onDelete(t.idTutor)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && tutors.length === 0" class="alert alert-info">
+    No hay profesores registrados.
+  </div>
+</div>
