@@ -1,0 +1,28 @@
+<div class="card shadow p-3">
+  <h2>{{ isEditMode ? 'Editar Profesor' : 'Nuevo Profesor' }}</h2>
+
+  <form [formGroup]="tutorForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label for="employeeId" class="form-label">Tutor</label>
+      <select id="employeeId" class="form-select" formControlName="idEmployee"
+        [ngClass]="{'is-invalid': tutorForm.get('idEmployee')?.invalid && tutorForm.get('idEmployee')?.touched}">
+        <option value="" disabled selected>Seleccione un empleado</option>
+        <option *ngFor="let emp of employees" [value]="emp.idEmployee">
+          {{ emp.name }}
+        </option>
+      </select>
+
+      <div class="invalid-feedback" *ngIf="tutorForm.get('employeeId')?.hasError('required')">
+        Debes seleccionar un empleado.
+      </div>
+    </div>
+
+    <button class="btn btn-success" type="submit" [disabled]="tutorForm.invalid">
+      {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+    </button>
+    <button class="btn btn-secondary ms-2" type="button" (click)="router.navigate(['/tutor'])">
+      Cancelar
+    </button>
+  </form>
+</div>
