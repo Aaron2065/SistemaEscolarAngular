@@ -4,6 +4,8 @@ import { EmployeeListComponent } from './pages/employee/employee-list/employee-l
 import { EmployeeCreateComponent } from './pages/employee/employee-create/employee-create.component';
 import { PayTypeListComponent } from './pages/payType/pay-type-list/pay-type-list.component';
 import { PayTypeCreateComponent } from './pages/payType/pay-type-create/pay-type-create.component';
+import { TeacherListComponent } from './pages/teacher/teacher-list/teacher-list.component';
+import { TeacherCreateComponent } from './pages/teacher/teacher-create/teacher-create.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +23,18 @@ export const routes: Routes = [
     {
         path: 'employee-create/:id', // editar
         component: EmployeeCreateComponent
+    },
+    {
+        path: 'teacher',
+        component: TeacherListComponent
+    },
+    {
+        path: 'teacher-create', // crear
+        component: TeacherCreateComponent
+    },
+    {
+        path: 'teacher-create/:id', // editar
+        component: TeacherCreateComponent
     },
     {
         path: 'payType',
