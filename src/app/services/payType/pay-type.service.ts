@@ -18,12 +18,12 @@ export class PayTypeService {
     return this.http.get<PayTypeReadDTO>(`${environment.api.payType}/${id}`);
   }
 
-  public createPayType(employee: PayTypeCreateDTO): Observable<PayTypeReadDTO> {
-    return this.http.post<PayTypeReadDTO>(environment.api.payType, employee);
+  public createPayType(paytype: PayTypeCreateDTO): Observable<PayTypeReadDTO> {
+    return this.http.post<PayTypeReadDTO>(environment.api.payType, paytype);
   }
 
-  public updatePayType(id: number, employee: PayTypeCreateDTO): Observable<PayTypeReadDTO> {
-    return this.http.put<PayTypeReadDTO>(`${environment.api.payType}/${id}`, employee);
+  public updatePayType(id: number, paytype: PayTypeCreateDTO): Observable<PayTypeReadDTO> {
+    return this.http.put<PayTypeReadDTO>(`${environment.api.payType}/${id}`, paytype);
   }
 
   public deletePayType(id: number): Observable<void> {

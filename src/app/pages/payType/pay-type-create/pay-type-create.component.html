@@ -1,1 +1,25 @@
-<p>pay-type-create works!</p>
+<div class="card shadow p-3">
+    <h2>{{ isEditMode ? 'Editar Empleado' : 'Nuevo Empleado' }}</h2>
+
+    <form [formGroup]="paytypeForm" (ngSubmit)="onSubmit()">
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripcion</label>
+            <input type="text" id="description" class="form-control" formControlName="description"
+                [ngClass]="{'is-invalid': paytypeForm.get('description')?.invalid && paytypeForm.get('description')?.touched}" />
+            <div class="invalid-feedback" *ngIf="paytypeForm.get('description')?.hasError('required')">
+                El nombre es obligatorio.
+            </div>
+            <div class="invalid-feedback" *ngIf="paytypeForm.get('description')?.hasError('maxlength')">
+                Máximo 100 caracteres.
+            </div>
+        </div>
+
+        <button class="btn btn-success" type="submit" [disabled]="paytypeForm.invalid">
+            {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+        </button>
+        <button class="btn btn-secondary ms-2" type="button" (click)="router.navigate(['/payType'])">
+            Cancelar
+        </button>
+    </form>
+</div>

@@ -30,19 +30,19 @@ export class PayTypeListComponent implements OnInit {
     this.loading = true;
     this.payTypeService.getAllPayTypes().subscribe({
       next: (data) => this.payType = data,
-      error: (err) => console.error('Error al cargar empleados', err),
+      error: (err) => console.error('Error al cargar los tipos de pago', err),
       complete: () => this.loading = false
     });
   }
 
   // Redirigir al componente employee-create para crear
   onCreate(): void {
-    this.router.navigate(['/employee-create']);
+    this.router.navigate(['/payType-create']);
   }
 
   // Redirigir al componente employee-create para editar
   onEdit(id: number): void {
-    this.router.navigate(['/employee-create', id]);
+    this.router.navigate(['/payType-create', id]);
   }
 
   // Eliminar con alertas SweetAlert
@@ -63,7 +63,7 @@ export class PayTypeListComponent implements OnInit {
             this.payType = this.payType.filter(e => e.idPayType !== id);
             Swal.fire(
               'Eliminado',
-              'El empleado ha sido eliminado correctamente.',
+              'El tipo de pago ha sido eliminado correctamente.',
               'success'
             );
           },
@@ -71,7 +71,7 @@ export class PayTypeListComponent implements OnInit {
             console.error(err);
             Swal.fire(
               'Error',
-              'No se pudo eliminar el empleado.',
+              'No se pudo eliminar el tipo de pago.',
               'error'
             );
           }
