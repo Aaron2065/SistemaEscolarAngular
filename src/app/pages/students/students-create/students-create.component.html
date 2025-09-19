@@ -1,0 +1,53 @@
+<div class="card shadow p-3">
+  <h2>{{ isEditMode ? 'Editar estudiante' : 'Nuevo estudiante' }}</h2>
+
+  <form [formGroup]="studentsForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        formControlName="name"
+        [ngClass]="{'is-invalid': studentsForm.get('name')?.invalid && studentsForm.get('name')?.touched}"
+      />
+      <div class="invalid-feedback" *ngIf="studentsForm.get('name')?.hasError('required')">
+        El nombre es obligatorio.
+      </div>
+      <div class="invalid-feedback" *ngIf="studentsForm.get('name')?.hasError('maxlength')">
+        Máximo 100 caracteres.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="age" class="form-label">Edad</label>
+      <input
+        type="text"
+        id="age"
+        class="form-control"
+        formControlName="age"
+        [ngClass]="{'is-invalid': studentsForm.get('age')?.invalid && studentsForm.get('age')?.touched}"
+      />
+      <div class="invalid-feedback" *ngIf="studentsForm.get('age')?.hasError('required')">
+        El nombre es obligatorio.
+      </div>
+      <div class="invalid-feedback" *ngIf="studentsForm.get('age')?.hasError('maxlength')">
+        Máximo 2 caracteres.
+      </div>
+    </div>
+
+  <label for="file" class="block font-semibold">Foto:</label>
+  <input type="file" id="file" (change)="onFileSelected($event)" accept="image/*" class="border p-2 w-full">
+  <div *ngIf="studentsForm.get('fotourl')?.invalid && studentsForm.get('fotourl')?.touched">
+    <small *ngIf="studentsForm.get('fotourl')?.errors?.['required']" class="text-red-500">La fotografia es obligatoria.</small>
+  </div>
+
+    <button class="btn btn-success" type="submit" [disabled]="studentsForm.invalid">
+      {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+    </button>
+    <button class="btn btn-secondary ms-2" type="button" (click)="router.navigate(['/students'])">
+      Cancelar
+    </button>
+  </form>
+</div>

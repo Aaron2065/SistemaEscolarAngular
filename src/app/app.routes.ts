@@ -10,6 +10,10 @@ import { TutorListComponent } from './pages/tutor/tutor-list/tutor-list.componen
 import { TutorCreateComponent } from './pages/tutor/tutor-create/tutor-create.component';
 import { classListComponent } from './pages/class/class-list/class.component';
 import { classCreateComponent } from './pages/class/class-create/class-create.component';
+import { TeacherCreateComponent } from './pages/teacher/teacher-create/teacher-create.component';
+import { TeacherListComponent } from './pages/teacher/teacher-list/teacher-list.component';
+import { StudentsListComponent } from './pages/students/students-list/students-list.component';
+import { StudentsCreateComponent } from './pages/students/students-create/students-create.component';
 
 export const routes: Routes = [
     {
@@ -76,6 +80,19 @@ export const routes: Routes = [
         path: 'class-create/:id', // editar
         component: classCreateComponent
     },
+    {
+        path: 'students',
+        component: StudentsListComponent
+    },
+    {
+        path: 'students-create', // crear
+        component: StudentsCreateComponent
+    },
+    {
+        path: 'students-create/:id', // editar
+        component: StudentsCreateComponent
+    },
+    
     {
         path: '',
         redirectTo: 'home',
