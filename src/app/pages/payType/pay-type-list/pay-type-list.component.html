@@ -1,0 +1,41 @@
+<div class="card shadow p-3">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Tipos de Pago</h2>
+    <button class="btn btn-primary" (click)="onCreate()">
+      <i class="bi bi-plus-lg"></i> Nueva forma de pago
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="text-center my-3">
+    <div class="spinner-border" role="status"></div>
+    <p>Cargando tipos de pago...</p>
+  </div>
+
+  <table class="table table-bordered table-hover" *ngIf="!loading && payType.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Descripcion</th>
+        <th class="text-center">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pt of payType">
+        <td>{{ pt.idPayType }}</td>
+        <td>{{ pt.description }}</td>
+        <td class="text-center">
+          <button class="btn btn-warning btn-sm me-2" (click)="onEdit(pt.idPayType)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="onDelete(pt.idPayType)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && payType.length === 0" class="alert alert-info">
+    No hay tipos de pago registrados.
+  </div>
+</div>
